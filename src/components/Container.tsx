@@ -5,7 +5,7 @@ function Container({ className, children }: {
     children: ReactNode
 }) {
   return (
-    <div className={`${className ? className : 'px-5 md:px-12  '}`}>{children}</div>
+    <div className={`px-5 md:px-16 w-full m-auto ${className}`}>{children}</div>
   )
 }
 

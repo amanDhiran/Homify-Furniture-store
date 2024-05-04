@@ -5,3 +5,7 @@
 body{
     background-color: beige;
 }
+
+.products-container::-webkit-scrollbar{
+    display: none;
+}
