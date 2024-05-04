@@ -4,15 +4,16 @@ import Hero from '../components/Hero'
 import Collection from '../components/Collection'
 import Features from '../components/Features'
 import PopularProducts from '../components/PopularProducts'
+import Testimonial from '../components/Testimonial'
 
 function Home() {
   return (
     <>
-        <Navbar />
         <Hero/>
-        <Collection />
         <Features />
+        <Collection />
         <PopularProducts />
+        <Testimonial />
     </>
   )
 }

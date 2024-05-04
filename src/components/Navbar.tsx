@@ -3,9 +3,9 @@ import Container from './Container'
 
 function Navbar() {
   return (
-    <header className=' z-10  w-full'>
+    <header className='z-30 w-full'>
     <Container>
-        <div className='flex h-16 items-center bg-transparent justify-between text-black'>
+        <div className='flex h-16 items-center justify-between text-black'>
             <div className='font-bold'> Homify </div>
             <div className='hidden md:block'>
                 <ul className='flex gap-5'>

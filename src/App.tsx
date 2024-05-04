@@ -6,7 +6,10 @@ function App() {
 
   return (
     <>
+    <Navbar />
+    <main className="">
       <Home />
+    </main>
     </>
   )
 }
