@@ -62,11 +62,11 @@ function PopularProducts() {
         </div>
         <div className="flex overflow-y-hidden gap-6 products-container">
           {data.map((product)=> (
-            <div className="flex-shrink-0 bg-white overflow-hidden rounded-lg flex flex-col w-64 md:w-72">
-              <div className="h-3/4 ">
-                <img className="h-full w-full " src={`${product.thumbnail}`} alt="" />
+            <div className="flex-shrink-0 bg-white overflow-hidden rounded-lg  flex flex-col h-72 md:h-auto w-60 md:w-72">
+              <div className="md:h-3/4 p-4 pb-0  h-2/4">
+                <img className="h-full w-full object-cover " src={`${product.thumbnail}`} alt="" />
               </div>
-              <div className="px-3 py-5 ">
+              <div className="px-8  pt-2 md:pb-5 ">
                 <div className="text-slate-500 text-lg">{product.category}</div>
                 <div className="text-lg font-semibold">{product.title}</div>
                 <div className="mt-4 font-semibold">Rs.{product.price}</div>

@@ -5,6 +5,7 @@ import Collection from '../components/Collection'
 import Features from '../components/Features'
 import PopularProducts from '../components/PopularProducts'
 import Testimonial from '../components/Testimonial'
+import Footer from '../components/Footer'
 
 function Home() {
   return (
@@ -14,6 +15,7 @@ function Home() {
         <Collection />
         <PopularProducts />
         <Testimonial />
+        <Footer/>
     </>
   )
 }

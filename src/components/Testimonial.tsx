@@ -65,13 +65,15 @@ function Testimonial() {
     },
   ];
   return (
-    <Container className="px-40">
-        <div className="text-4xl font-bold pt-10 text-center mb-20">What our buyers say</div>
-      <div className="grid gap-6 md:grid-cols-4 md:grid-rows-2  ">
+    <div className="pt-10 pb-16">
+    <Container >
+      
+      <div className="text-4xl font-bold text-center mb-20">What our buyers say</div>
+      <div className="grid gap-6 grid-cols-1  md:grid-cols-4 md:grid-rows-2  ">
         {data.map((data, i) => (
           <div
             className={
-              `p-6 ${i===0 || i===4? "col-span-2" : i === 2 ?"row-span-2" : ""} rounded-lg h-auto flex flex-col gap-4  max-w-[400px]  md:max-w-none bg-[#f7f7f7]`
+              `p-6 ${i===0 || i===4? "md:col-span-2" : i === 2 ?"md:row-span-2" : ""} rounded-lg h-auto flex flex-col gap-4  max-w-[400px]  md:max-w-none bg-[#f7f7f7]`
             }
           >
             {/* avatar and name */}
@@ -95,6 +97,7 @@ function Testimonial() {
         ))}
       </div>
     </Container>
+    </div>
   );
 }
 
