@@ -5,12 +5,12 @@ function Footer() {
   return (
     <div className="bg-[#f7f7f7] pt-10 pb-5">
       <Container>
-        <div className="flex flex-wrap gap-10  flex-col lg:flex-row">
-          <div className="flex flex-col">
-            <h2>Homify</h2>
+        <div className="flex w-full flex-wrap gap-10 px-20 py-6 justify-between  flex-col lg:flex-row">
+          <div className="flex flex-col gap-3">
+            <h2 className="font-bold text-xl">Homify</h2>
             <p>We help you homify your home.</p>
           </div>
-          <div className="flex flex-wrap lg:w-[65%] gap-10 justify-between">
+          <div className="flex w-full flex-wrap lg:w-[65%] gap-10 justify-between">
             <div className="flex flex-col">
               <p className="font-bold mb-2">Company</p>
               <p>About Us</p>

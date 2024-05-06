@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Container from "./Container";
 import products from "../data/products.json";
-
+import {motion} from 'framer-motion'
 let tabs = [
   { id: "sofa", label: "Sofa" },
   { id: "chair", label: "Chairs" },
@@ -40,27 +40,27 @@ function PopularProducts() {
                 }}
                 className={`${
                   activeTab === tab.id
-                    ? "bg-white rounded-full"
+                    ? ""
                     : "hover:bg-slate-50/50"
-                } relative rounded-full px-3 py-1.5 text-sm font-medium text-black outline-sky-400 transition focus-visible:outline-2`}
+                } relative rounded-full px-3 py-1.5 text-sm font-medium text-black  transition `}
                 style={{
                   WebkitTapHighlightColor: "transparent",
                 }}
               >
-                {/* {activeTab === tab.id && (
+                {activeTab === tab.id && (
             <motion.span
               layoutId="bubble"
               className="absolute inset-0 z-10 bg-white mix-blend-difference"
               style={{ borderRadius: 9999 }}
               transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
             />
-          )} */}
+          )}
                 {tab.label}
               </button>
             ))}
           </div>
         </div>
-        <div className="flex overflow-y-hidden gap-6 products-container">
+        <div className="flex overflow-y-hidden gap-6 scrollbar-none ">
           {data.map((product)=> (
             <div className="flex-shrink-0 bg-white overflow-hidden rounded-lg  flex flex-col h-72 md:h-auto w-60 md:w-72">
               <div className="md:h-3/4 p-4 pb-0  h-2/4">
