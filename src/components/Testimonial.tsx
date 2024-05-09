@@ -46,7 +46,7 @@ function Testimonial() {
         <div className="text-4xl font-bold text-center mb-20">
           What our buyers say
         </div>
-        <div className="flex flex-col items-center lg:flex-row gap-4">
+        <div className="flex flex-col items-center lg:flex-row lg:items-start gap-4">
           {data.map((data) => (
             <div
               className={`p-6 min-w-56  rounded-lg h-auto flex flex-col gap-4  max-w-md bg-[#f7f7f7]`}
