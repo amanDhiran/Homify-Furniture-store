@@ -2,9 +2,9 @@
     "sofa": [
       {
         "id": 1,
-        "title": "iPhone 9",
-        "description": "An apple mobile which is nothing like apple",
-        "price": 549,
+        "title": "Modern Leather Sofa",
+        "description": "Premium quality leather sofa with modern design",
+        "price": 999.99,
         "category": "Sofa",
         "thumbnail": "https://www.ikea.com/in/en/images/products/landskrona-3-seat-sofa-gunnared-dark-grey-wood__0602117_pe680186_s5.jpg?f=xl",
         "images": [
@@ -17,8 +17,8 @@
       },
       {
         "id": 2,
-        "title": "iPhone X",
-        "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+        "title": "Leather Chesterfield Sofa",
+        "description": "Classic leather chesterfield sofa with button-tufted back",
         "price": 899,
         "category": "Sofa",
         "thumbnail": "https://www.ikea.com/in/en/images/products/aepplaryd-3-seat-sofa-djuparp-red-brown__0992905_pe820323_s5.jpg?f=xl",
@@ -31,8 +31,8 @@
       },
       {
         "id": 3,
-        "title": "Samsung Universe 9",
-        "description": "Samsung's new variant which goes beyond Galaxy to the Universe",
+        "title": "Velvet Chesterfield Sofa",
+        "description": "Elegant velvet chesterfield sofa with tufted backrest",
         "price": 1249,
         "category": "Sofa",
         "thumbnail": "https://www.ikea.com/in/en/images/products/soederhamn-3-seat-sofa-gransel-natural-colour__1057651_pe848865_s5.jpg?f=xl",
@@ -42,8 +42,8 @@
       },
       {
         "id": 4,
-        "title": "OPPOF19",
-        "description": "OPPO F19 is officially announced on April 2021.",
+        "title": "Microfiber Sectional Sofa",
+        "description": "Cozy microfiber sectional sofa with chaise lounge",
         "price": 280,
         "category": "Sofa",
         "thumbnail": "https://www.ikea.com/in/en/images/products/linanaes-3-seat-sofa-vissle-dark-grey__1013898_pe829450_s5.jpg?f=xl",
@@ -57,9 +57,9 @@
       },
       {
         "id": 5,
-        "title": "Huawei P30",
-        "description": "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.",
-        "price": 499,
+        "title": "Small Space Sofa",
+        "description": "Compact sofa perfect for small living spaces",
+        "price": 599.99,
         "brand": "Huawei",
         "category": "Sofa",
         "thumbnail": "https://www.ikea.com/in/en/images/products/linanaes-2-seat-sofa-vissle-dark-grey__0962404_pe808061_s5.jpg?f=xl",
@@ -71,8 +71,8 @@
       },
       {
         "id": 6,
-        "title": "MacBook Pro",
-        "description": "MacBook Pro 2021 with mini-LED display may launch between September, November",
+        "title": "Chaise Lounge Sofa",
+        "description": "Comfortable chaise lounge sofa with reversible ottoman",
         "price": 1749,
         "category": "Sofa",
         "thumbnail": "https://www.ikea.com/in/en/images/products/linanaes-3-seat-sofa-with-chaise-longue-vissle-beige__1013903_pe829455_s5.jpg?f=xl",
@@ -85,9 +85,9 @@
       },
       {
         "id": 7,
-        "title": "Samsung Galaxy Book",
-        "description": "",
-        "price": 1499,        "rating": 4.25,
+        "title": "Mid-Century Modern Sofa",
+        "description": "Stylish mid-century modern sofa with solid wood legs",
+        "price": 1499,   
         "category": "Sofa",
         "thumbnail": "https://www.ikea.com/in/en/images/products/ormaryd-3-seat-sofa-dark-blue__0919663_pe786703_s5.jpg?f=xl",
         "images": [
@@ -99,9 +99,9 @@
       },
       {
         "id": 8,
-        "title": "Microsoft Surface Laptop 4",
-        "description": "Style and speed. Stand out on HD video calls backed by Studio Mics. Capture ideas on the vibrant touchscreen.",
-        "price": 1499,
+        "title": "L-Shaped Fabric Sofa",
+        "description": "Comfortable L-shaped sofa made with soft fabric",
+        "price": 799.99,
         "category": "Sofa",
         "thumbnail": "https://www.ikea.com/in/en/images/products/friheten-klagshamn-corner-sofa-bed-with-storage-skiftebo-blue__1057054_pe848723_s5.jpg?f=xl",
         "images": [

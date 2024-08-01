@@ -16,3 +16,7 @@ body{
 .scrollbar-none::-webkit-scrollbar{
     display: none;
 }
+
+/* .iteration-infinite {
+    animation-iteration-count: infinite,
+} */
