@@ -1,5 +1,4 @@
-import React from "react";
-import Container from "./Container";
+import Container from "./container";
 import { BiSupport } from "react-icons/bi";
 import { FaShippingFast } from "react-icons/fa";
 import { BiCheckShield } from "react-icons/bi";

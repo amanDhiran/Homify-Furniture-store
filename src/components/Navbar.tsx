@@ -1,8 +1,10 @@
+"use client"
 import React, { useEffect, useState } from "react";
-import Container from "./Container";
+import Container from "./container";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { FaCartShopping } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa";
+import Link from "next/link";
 
 function Navbar() {
   const [hidden, setHidden] = useState(false);
@@ -32,7 +34,7 @@ function Navbar() {
     >
       <Container>
         <div className="flex items-center justify-between text-black">
-          <div className="font-bold"> Homify </div>
+          <Link href={"/"} className="font-bold"> Homify </Link>
           <div className="hidden md:block">
             <ul className="flex gap-5">
               <li>Home</li>
