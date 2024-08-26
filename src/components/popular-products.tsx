@@ -12,16 +12,39 @@ let tabs = [
   { id: "bed", label: "Beds" },
 ];
 
+interface Product{
+  id:          string      
+  title:       string
+  description: string
+  price:       number
+  imageUrl:    string
+  category:    string
+}
+
 function PopularProducts() {
   let [activeTab, setActiveTab] = useState(tabs[0].id);
-  const [data, setData] = useState(products.sofa);
+  const [data, setData] = useState<Product[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState(null);
+
+  const fetchProducts = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(`/api/products/${activeTab}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch products");
+      }
+      const products = await response.json();
+      setData(products);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    if(activeTab === "sofa"){
-      setData(products.sofa)
-    } else if(activeTab === "chair"){
-      setData(products.chair)
-    }
+    fetchProducts()
   }, [activeTab])
 
   return (
@@ -29,7 +52,7 @@ function PopularProducts() {
       <Container >
         <div>
           <div className="text-4xl text-center font-bold ">
-            Pupolar Products
+            Popular Products
           </div>
         </div>
         {/* tabs */}
@@ -66,7 +89,7 @@ function PopularProducts() {
         {/* products container */}
         <div className="flex overflow-y-hidden gap-6 scrollbar-none ">
           {data.map((product)=> (
-            <Product key={product.id} product={product}/>
+            <Product product={product}/>
           ))}
         </div>
       </Container>
