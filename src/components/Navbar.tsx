@@ -5,6 +5,7 @@ import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { FaCartShopping } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa";
 import Link from "next/link";
+import { LoginButton } from "./auth/login-button";
 
 function Navbar() {
   const [hidden, setHidden] = useState(false);
@@ -45,7 +46,10 @@ function Navbar() {
           </div>
           <div className="flex items-center gap-5">
             <FaUser className="text-xl"/>
-            <FaCartShopping className="text-xl" />
+            {/* TODO: wrap cart in LoginButton if the user is not logged in */}
+            <LoginButton>
+              <FaCartShopping className="text-xl" />
+            </LoginButton>
           </div>
         </div>
       </Container>
