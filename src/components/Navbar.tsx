@@ -47,7 +47,7 @@ function Navbar() {
           <div className="flex items-center gap-5">
             <FaUser className="text-xl"/>
             {/* TODO: wrap cart in LoginButton if the user is not logged in */}
-            <LoginButton>
+            <LoginButton asChild>
               <FaCartShopping className="text-xl" />
             </LoginButton>
           </div>
