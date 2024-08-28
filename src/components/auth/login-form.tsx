@@ -4,7 +4,7 @@ import React, { useState, useTransition } from "react";
 import CardWrapper from "./card-wrapper";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { LoginSchema, loginSchema } from "../../../zod-schemas";
+import { LoginSchema, loginSchema } from "../../zod-schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,

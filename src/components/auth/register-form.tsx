@@ -4,7 +4,7 @@ import React, { useState, useTransition } from "react";
 import CardWrapper from "./card-wrapper";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { RegisterSchema, registerSchema } from "../../../zod-schemas";
+import { RegisterSchema, registerSchema } from "../../zod-schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
@@ -18,7 +18,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
-import { login } from "@/actions/login";
+import { register } from "@/actions/register";
 
 export function RegisterForm() {
   const [error, setError] = useState<string | undefined>("");
@@ -35,7 +35,16 @@ export function RegisterForm() {
   });
 
   function onRegisterSubmit(values: registerSchema) {
-    login(values);
+    setError('')
+    setSuccess('')
+
+    startTransition(() => {
+        register(values)
+        .then((data) => {
+          setError(data?.error)
+          setSuccess(data?.success)
+        })
+    })
   }
 
   return (
@@ -98,8 +107,8 @@ export function RegisterForm() {
               )}
             />
           </div>
-          <FormError />
-          <FormSuccess />
+          <FormError message={error} />
+          <FormSuccess message={success} />
           <Button type="submit" className="w-full" disabled={pending}>
             Register
           </Button>

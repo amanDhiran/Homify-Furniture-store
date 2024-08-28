@@ -1,7 +1,6 @@
-import { PrismaClient } from "@prisma/client";
+import { db } from "@/lib/db";
 
 
-const prisma = new PrismaClient();
 
 async function main() {
   const products = [
@@ -336,7 +335,7 @@ async function main() {
 
   // Insert data into the database
   for (const product of products) {
-    await prisma.product.create({
+    await db.product.create({
       data: product,
     });
   }
@@ -350,5 +349,5 @@ main()
     process.exit(1);
   })
   .finally(async () => {
-    await prisma.$disconnect();
+    await db.$disconnect();
   });
