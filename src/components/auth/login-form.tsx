@@ -39,7 +39,10 @@ export function LoginForm() {
 
     startTransition(() => {
         login(values)
-        .then()
+        .then((data) => {
+          setError(data?.error)
+          setSuccess(data?.success)
+        })
     })
     
   }
@@ -88,8 +91,8 @@ export function LoginForm() {
               )}
             />
           </div>
-          <FormError />
-          <FormSuccess />
+          <FormError message={error}/>
+          <FormSuccess message={success} />
           <Button type="submit" disabled={pending} className="w-full">
             Login
           </Button>
