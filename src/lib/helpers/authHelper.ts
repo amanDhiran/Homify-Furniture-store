@@ -1,5 +1,5 @@
-import { use } from "react";
 import { db } from "../db";
+import { auth } from "@/auth";
 
 export async function getUserByEmail(email: string){
     try {

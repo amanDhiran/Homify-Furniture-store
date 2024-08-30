@@ -89,7 +89,7 @@ function PopularProducts() {
         {/* products container */}
         <div className="flex overflow-y-hidden gap-6 scrollbar-none ">
           {data.map((product)=> (
-            <Product product={product}/>
+            <Product key={product.id} product={product}/>
           ))}
         </div>
       </Container>
