@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { auth } from "@/auth";
+import { Providers } from "./provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -20,11 +21,13 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <Providers>
           <Navbar user={session?.user!}/>
           <div className="pt-[80px]">
           {children}
           </div>
           <Footer />
+          </Providers>
       </body>
     </html>
   );

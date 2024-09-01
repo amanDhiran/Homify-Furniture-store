@@ -2,7 +2,6 @@
 import React, { useEffect, useState, useTransition } from "react";
 import Container from "./container";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
-import { FaCartShopping } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa";
 import Link from "next/link";
 import { LoginButton } from "./auth/login-button";
@@ -26,15 +25,20 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "./ui/sheet";
-import { Menu, X } from "lucide-react";
+import { Menu, Minus, Plus, Trash2, X } from "lucide-react";
+import useCart from "@/hooks/useCart";
+import { Separator } from "@radix-ui/react-dropdown-menu";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { cartTotalState } from "@/store/atoms/cartState";
+import { CartSheet } from "./cart-sheet";
 
 function Navbar({ user }: { user: User }) {
   const [hidden, setHidden] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [pending, startTransition] = useTransition();
   const { scrollY } = useScroll();
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const { cart, removeItem, updateQuantity } = useCart();
+  const totalPrice = useRecoilValue(cartTotalState)
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
@@ -114,32 +118,7 @@ function Navbar({ user }: { user: User }) {
               )}
             </div>
             <div className="flex gap-3 items-center md:block">
-              <Sheet>
-                <SheetTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    className=" text-gray-700 hover:bg-transparent hover:text-primary"
-                  >
-                    <FaCartShopping className="h-5 w-5" />
-                    <span className="sr-only">Open cart</span>
-                  </Button>
-                </SheetTrigger>
-                <SheetContent>
-                  <SheetHeader>
-                    <SheetTitle>Your Cart</SheetTitle>
-                    <SheetDescription>
-                      Review your items and checkout when you're ready.
-                    </SheetDescription>
-                  </SheetHeader>
-                  <div className="mt-8">
-                    {/* Cart items would go here */}
-                    <p>Your cart is empty.</p>
-                  </div>
-                  <div className="mt-8">
-                    <Button className="w-full">Proceed to Checkout</Button>
-                  </div>
-                </SheetContent>
-              </Sheet>
+              <CartSheet/>
 
               <div className="sm:hidden">
                 <Sheet>
@@ -216,9 +195,7 @@ function Navbar({ user }: { user: User }) {
                           ) : (
                             <>
                               <LoginButton className="w-full text-left px-4 py-2 text-base font-medium text-gray-500 hover:text-primary hover:bg-gray-100">
-                                <div>
-                                  Sign in
-                                </div>
+                                <div>Sign in</div>
                               </LoginButton>
                               <Link
                                 href="/register"
@@ -237,8 +214,7 @@ function Navbar({ user }: { user: User }) {
             </div>
           </div>
         </div>
-
-        </Container>
+      </Container>
     </motion.header>
   );
 }

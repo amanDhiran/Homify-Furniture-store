@@ -4,6 +4,7 @@ import Container from "./container";
 import products from "../data/products.json";
 import {motion} from 'framer-motion'
 import Product from "./product";
+import useCart from "@/hooks/useCart";
 
 let tabs = [
   { id: "sofa", label: "Sofa" },
@@ -26,6 +27,7 @@ function PopularProducts() {
   const [data, setData] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState(null);
+
 
   const fetchProducts = async () => {
     setLoading(true);

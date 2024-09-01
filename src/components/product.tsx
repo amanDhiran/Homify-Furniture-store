@@ -1,3 +1,4 @@
+import useCart from "@/hooks/useCart"
 import Link from "next/link"
 
 interface Props {
@@ -14,19 +15,16 @@ interface Props {
 function Product({
     product: {id, imageUrl, category, title, price, description}
 } : Props ) {
+
+  const {addToCart, removeItem} = useCart()
+
+  const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation(); // Prevent the Link's click event from being triggered
+    addToCart({ id: id, name: title, price: price, quantity: 1 });
+  };
+
   return (
-    <Link href={
-        {
-            pathname: `/product/${id}`,
-            query: {
-                title,
-                imageUrl,
-                category,
-                price,
-                description
-            },
-        }
-    } className="flex-shrink-0 border border-slate-400/20 bg-white rounded-lg flex flex-col w-72">
+    <div className="flex-shrink-0 border border-slate-400/20 bg-white rounded-lg flex flex-col w-72">
               <div className=" aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md  lg:aspect-none group-hover:opacity-75 lg:h-80">
                 <img className="h-full w-full object-contain lg:h-full lg:w-full" src={`${imageUrl}`} alt="" />
               </div>
@@ -38,10 +36,10 @@ function Product({
                 </div>
                 <div className="flex items-center justify-between">
                   <p className=" font-semibold">${price}</p>
-                  <button className="px-3 bg-slate-200/40 hover:bg-black/20 transition-all duration-300 ease-in-out rounded-full py-2">Add to cart</button>
+                  <button onClick={handleAddToCart} className="px-3 bg-slate-200/40 hover:bg-black/20 transition-all duration-300 ease-in-out rounded-full py-2">Add to cart</button>
                 </div>
               </div>
-    </Link>
+    </div>
   )
 }
 
