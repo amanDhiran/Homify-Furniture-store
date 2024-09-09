@@ -34,35 +34,6 @@ interface Props {
 export default function ProductPage({params, searchParams}: Props){
     const { title, thumbnail, category, price } = searchParams;
 	return (
-		// <div className="flex flex-col  justify-between gap-12 p-12 text-gray-700">
-		// 	<Image src={thumbnail} alt={title} width={400} height={400} />
-		// 	<div>
-		// 		<h1 className="font-bold text-3xl text-emerald-400">{title}</h1>
-		// 		<div className="flex gap-4">
-		// 			<p className="font-bold text-teal-700 text-2xl">
-		// 				{price}
-		// 			</p>
-		// 		</div>
-		// 	</div>
-		// 	<Image src={thumbnail} alt={title} width={400} height={400} />
-		// 	<div>
-		// 		<h1 className="font-bold text-3xl text-emerald-400">{title}</h1>
-		// 		<div className="flex gap-4">
-		// 			<p className="font-bold text-teal-700 text-2xl">
-		// 				{price}
-		// 			</p>
-		// 		</div>
-		// 	</div>
-		// 	<Image src={thumbnail} alt={title} width={400} height={400} />
-		// 	<div>
-		// 		<h1 className="font-bold text-3xl text-emerald-400">{title}</h1>
-		// 		<div className="flex gap-4">
-		// 			<p className="font-bold text-teal-700 text-2xl">
-		// 				{price}
-		// 			</p>
-		// 		</div>
-		// 	</div>
-		// </div>
     <div className="container mx-auto px-4 py-8">
       <div className="grid md:grid-cols-2 gap-8">
         <div className="space-y-4">
@@ -84,12 +55,12 @@ export default function ProductPage({params, searchParams}: Props){
           <div>
             <h1 className="text-3xl font-bold">{title}</h1>
             {/* REVIEW */}
-            <div className="flex items-center mt-2">
+            {/* <div className="flex items-center mt-2">
               {[1, 2, 3, 4, 5].map((star) => (
                 <Star key={star} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
               ))}
               <span className="ml-2 text-sm text-gray-600">(128 reviews)</span>
-            </div>
+            </div> */}
           </div>
           <div className="text-4xl font-bold">${price}</div>
           <p className="text-gray-600">

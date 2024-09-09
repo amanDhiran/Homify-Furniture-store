@@ -73,8 +73,14 @@ function Navbar({ user }: { user: User }) {
           </Link>
           <div className="hidden md:block">
             <ul className="flex gap-5">
-              <li>Home</li>
-              <li>Products</li>
+              <li><Link href={"/"}>
+            {" "}
+            Home{" "}
+          </Link></li>
+              <li><Link href={"/our-products"}>
+            {" "}
+            Products{" "}
+          </Link></li>
               <li>About Us</li>
               <li>Contact Us</li>
             </ul>
@@ -118,6 +124,7 @@ function Navbar({ user }: { user: User }) {
               )}
             </div>
             <div className="flex gap-3 items-center md:block">
+              
               <CartSheet/>
 
               <div className="sm:hidden">

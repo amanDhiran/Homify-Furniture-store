@@ -19,7 +19,7 @@ function Collection() {
                 <img className='w-full absolute top-0 left-0 h-full object-cover object-center' src="https://www.ikea.com/in/en/images/products/vedbo-armchair-gunnared-light-brown-pink__0837412_pe696814_s5.jpg?f=xl" alt="img" />
               </div>
               <div className=" before:content-[''] before:absolute before:h-full before:left-0 before:z-[1] before:w-full before:bg-black/50 before:overflow-hidden overflow-hidden object-cover h-52 md:h-60  relative object-bottom  rounded-xl">
-                <div  className= "z-10 relative h-full w-full flex justify-center items-center font-bold text-4xl md:text-5xl text-indigo-200">Lamps</div>
+                <div  className= "z-10 relative h-full w-full flex justify-center items-center font-bold text-4xl md:text-5xl text-indigo-200">Lamp</div>
                 <img className='w-full absolute top-0 left-0 h-full object-cover object-center' src="https://www.ikea.com/in/en/images/products/kvart-work-lamp-black__0880538_pe614074_s5.jpg?f=l" alt="img" />
               </div>
               <div className=" before:content-[''] before:absolute before:h-full before:left-0 before:z-[1] before:w-full before:bg-black/50 before:overflow-hidden md:col-span-2 overflow-hidden object-cover h-52 md:h-60  relative object-bottom rounded-xl">

@@ -10,23 +10,29 @@ import { Minus, Plus, Trash2, X } from "lucide-react";
 import useCart from "@/hooks/useCart";
 import { Separator } from "@radix-ui/react-dropdown-menu";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { cartTotalState } from "@/store/atoms/cartState";
+import { cartTotalItemsState, cartTotalState } from "@/store/atoms/cartState";
 import { Button } from "./ui/button";
 import { FaCartShopping } from "react-icons/fa6";
 
 export function CartSheet() {
   const { cart, removeItem, updateQuantity } = useCart();
   const totalPrice = useRecoilValue(cartTotalState);
+  const totalItems = useRecoilValue(cartTotalItemsState);
 
   return (
     <Sheet>
       <SheetTrigger asChild>
         <Button
           variant="ghost"
-          className=" text-gray-700 hover:bg-transparent hover:text-primary"
+          className=" text-gray-700 hover:bg-transparent hover:text-primary relative"
         >
           <FaCartShopping className="h-5 w-5" />
           <span className="sr-only">Open cart</span>
+        {totalItems > 0 && (
+          <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground rounded-full w-5 h-5 flex items-center justify-center text-xs">
+            {totalItems}
+          </span>
+        )}
         </Button>
       </SheetTrigger>
       <SheetContent>
@@ -44,7 +50,7 @@ export function CartSheet() {
             cart.map((item) => (
               <div key={item.id} className="flex items-center space-x-4">
                 <img
-                  src={"item.image"}
+                  src={item.image}
                   alt={item.name}
                   className="w-16 h-16 object-cover rounded"
                 />
