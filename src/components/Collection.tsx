@@ -12,7 +12,7 @@ function Collection() {
                 <div  className= " text-4xl md:text-5xl text-yellow-200 font-bold ">Sofa</div>
                 {/* <div className=' font-semibold text-xl text-white'>Explore &gt;</div> */}
                 </div>
-                <img className='w-full absolute top-0 left-0 h-full object-cover object-bottom md:object-center' src='/sofa.jpg' alt="img" />
+                <img className='w-full absolute top-0 left-0 h-full object-cover object-bottom md:object-center' src='/images/category/sofa.avif' alt="img" />
               </div>
               <div className=" before:content-[''] before:absolute before:h-full before:left-0 before:z-[1] before:w-full before:bg-black/50 before:overflow-hidden overflow-hidden object-cover h-52 md:h-60  relative object-bottom rounded-xl">
                 <div  className= "z-10 relative h-full w-full flex justify-center items-center text-pink-300 font-bold text-4xl md:text-5xl">Chair</div>
@@ -24,7 +24,7 @@ function Collection() {
               </div>
               <div className=" before:content-[''] before:absolute before:h-full before:left-0 before:z-[1] before:w-full before:bg-black/50 before:overflow-hidden md:col-span-2 overflow-hidden object-cover h-52 md:h-60  relative object-bottom rounded-xl">
                 <div  className= "z-10 relative h-full w-full flex justify-center items-center font-bold text-4xl md:text-5xl text-rose-200">Bed</div>
-                <img className='w-full absolute top-0 left-0 h-full object-cover object-center' src="/bed.jpg" alt="img" />
+                <img className='w-full absolute top-0 left-0 h-full object-cover object-center' src="/images/category/bed.avif" alt="img" />
               </div>
           </div>
         </Container>

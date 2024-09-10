@@ -67,11 +67,11 @@ export default function ProductsPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex items-center mb-8">
-        <Link href="/" className="flex items-center text-primary hover:text-primary-dark transition-colors">
+        <Link href="/" className="flex items-center text-sm md:text-base text-primary hover:text-primary-dark transition-colors">
           <ArrowLeft className="mr-2" />
           Back to Home
         </Link>
-        <h1 className="text-3xl font-bold ml-auto">Our Products</h1>
+        <h1 className="text-xl md:text-3xl font-bold ml-auto">Our Products</h1>
       </div>
       <div className="flex flex-col md:flex-row gap-8">
         <aside className="w-full md:w-1/4">
@@ -134,16 +134,6 @@ export default function ProductsPage() {
         <main className="w-full md:w-3/4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProducts.map(product => (
-            //   <div key={product.id} className="bg-white p-6 rounded-lg shadow-md transition-all hover:shadow-lg">
-            //     <img src={product.imageUrl} alt={product.title} className="w-full h-48 object-cover mb-4 rounded" />
-            //     <h3 className="text-lg font-semibold mb-2">{product.title}</h3>
-            //     <p className="text-gray-600 mb-2">{product.category}</p>
-            //     <p className="text-xl font-bold mb-4">${product.price.toFixed(2)}</p>
-            //     <Button className="w-full flex items-center justify-center">
-            //       <ShoppingCart className="mr-2 h-4 w-4" />
-            //       Add to Cart
-            //     </Button>
-            //   </div>
             <Product product={product} key={product.id}/>
             ))}
           </div>

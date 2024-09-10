@@ -32,13 +32,6 @@ function Product({
       <Link
         href={{
           pathname: `/product/${id}`,
-          query: {
-            title,
-            imageUrl,
-            category,
-            price,
-            description,
-          },
         }}
       >
         <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md  lg:aspect-none group-hover:opacity-75 h-44">

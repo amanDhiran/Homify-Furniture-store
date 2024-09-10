@@ -75,7 +75,7 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        marquee: 'marquee 10s linear infinite',
+        marquee: 'marquee 20s linear infinite',
       },
       backgroundImage: {
         'overlay': 'linear-gradient(180deg, rgba(1,1,1,0.8) 0%, rgba(1,1,1,0) 30%, rgba(0,0,0,0) 90%, rgba(255,255,255,1) 100%)',

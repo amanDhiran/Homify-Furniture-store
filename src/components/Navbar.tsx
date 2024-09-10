@@ -4,7 +4,6 @@ import Container from "./container";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { FaUser } from "react-icons/fa";
 import Link from "next/link";
-import { LoginButton } from "./auth/login-button";
 import { logout } from "@/actions/logout";
 import { useSession } from "next-auth/react";
 import { User } from "next-auth";
@@ -16,29 +15,23 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
-import { signOut } from "@/auth";
+// import { signOut } from "@/auth";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "./ui/sheet";
-import { Menu, Minus, Plus, Trash2, X } from "lucide-react";
-import useCart from "@/hooks/useCart";
-import { Separator } from "@radix-ui/react-dropdown-menu";
+import { Menu, Minus, Plus, Trash2, X } from "lucide-react"
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { cartTotalState } from "@/store/atoms/cartState";
 import { CartSheet } from "./cart-sheet";
+import useCart from "@/hooks/useCart";
 
 function Navbar({ user }: { user: User }) {
   const [hidden, setHidden] = useState(false);
   const [pending, startTransition] = useTransition();
   const { scrollY } = useScroll();
-
-  const { cart, removeItem, updateQuantity } = useCart();
-  const totalPrice = useRecoilValue(cartTotalState)
+  const {emptyCart} = useCart()
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
@@ -52,6 +45,7 @@ function Navbar({ user }: { user: User }) {
   async function handleLogout() {
     startTransition(() => {
       logout();
+      emptyCart()
     });
   }
 
@@ -67,22 +61,23 @@ function Navbar({ user }: { user: User }) {
     >
       <Container>
         <div className="flex items-center justify-between text-black">
-          <Link href={"/"} className="font-bold">
-            {" "}
-            Homify{" "}
-          </Link>
+          <Link href="/" className="flex-shrink-0 flex items-center">
+              <svg className="h-8 w-8 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+              <span className="ml-2 text-xl font-bold text-primary">Homify</span>
+            </Link>
           <div className="hidden md:block">
             <ul className="flex gap-5">
               <li><Link href={"/"}>
-            {" "}
-            Home{" "}
+            Home
           </Link></li>
               <li><Link href={"/our-products"}>
-            {" "}
-            Products{" "}
+            Products
           </Link></li>
-              <li>About Us</li>
-              <li>Contact Us</li>
+              <li><a href="#" rel="noopener noreferrer">About Us</a></li>
+              <li><a href="#" rel="noopener noreferrer">Contact Us</a></li>
             </ul>
           </div>
 
@@ -115,12 +110,12 @@ function Navbar({ user }: { user: User }) {
                   </DropdownMenuContent>
                 </DropdownMenu>
               ) : (
-                <LoginButton asChild>
-                  <div>
+                  <Link href={{
+                    pathname: "/auth/login"
+                  }}>
                     {/* <FaUser className="h-5 w-5 mr-1" /> */}
                     Sign In
-                  </div>
-                </LoginButton>
+                  </Link>
               )}
             </div>
             <div className="flex gap-3 items-center md:block">
@@ -142,19 +137,19 @@ function Navbar({ user }: { user: User }) {
                           Home
                         </Link>
                         <Link
-                          href="/categories"
+                          href="/our-products"
                           className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50"
                         >
                           Products
                         </Link>
                         <Link
-                          href="/deals"
+                          href="#"
                           className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50"
                         >
                           About Us
                         </Link>
                         <Link
-                          href="/new-arrivals"
+                          href="#"
                           className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50"
                         >
                           Contact Us
@@ -201,11 +196,13 @@ function Navbar({ user }: { user: User }) {
                             </>
                           ) : (
                             <>
-                              <LoginButton className="w-full text-left px-4 py-2 text-base font-medium text-gray-500 hover:text-primary hover:bg-gray-100">
+                              <Link href={{
+                                pathname: "/auth/login"
+                              }} className="w-full text-left px-4 py-2 text-base font-medium text-gray-500 hover:text-primary hover:bg-gray-100">
                                 <div>Sign in</div>
-                              </LoginButton>
+                              </Link>
                               <Link
-                                href="/register"
+                                href="/auth/register"
                                 className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-primary hover:bg-gray-100"
                               >
                                 Register

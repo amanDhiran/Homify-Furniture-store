@@ -55,11 +55,16 @@ const useCart = () => {
     ).filter(item => item.quantity > 0))
   }
 
+  const emptyCart = () => {
+    setCart([])
+  }
+
   return {
     cart,
     addToCart,
     removeItem,
-    updateQuantity
+    updateQuantity,
+    emptyCart
   };
 };
 

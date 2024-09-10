@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Container from "./container";
 
 function Hero() {
@@ -8,9 +9,13 @@ function Hero() {
             <div className="text-white text-5xl  text-left  md:text-6xl lg:text-7xl md:text-center font-bold">
               Products that <span>Homify</span> your home.
             </div>
-            <button className="bg-green-600 py-3 font-semibold text-white text-xl md:text-2xl md:py-3 px-5 flex items-center md:px-10  rounded-full">
+            <Link href={{
+          pathname: '/our-products',
+        }}>
+            <button className="bg-green-600 py-3 hover:bg-green-500 transition-all ease-in-out font-semibold text-white text-xl md:text-2xl md:py-3 px-5 flex items-center md:px-10  rounded-full">
               Shop Now
             </button>
+            </Link>
           </div>
         </div>
 

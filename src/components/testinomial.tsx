@@ -1,9 +1,4 @@
 import React from "react";
-import imageDaniel from "../data/images/image-daniel.jpg";
-import imageJonathan from "../data/images/image-jonathan.jpg";
-import imageJeanette from "../data/images/image-jeanette.jpg";
-import imagePatrick from "../data/images/image-patrick.jpg";
-import imageKira from "../data/images/image-kira.jpg";
 import Container from "./container";
 
 function Testimonial() {
@@ -20,25 +15,25 @@ function Testimonial() {
     {
       // 1
       className: "md:col-span-2",
-      avatarImg: imageDaniel,
+      avatarImg: "images/reviews/image-daniel.jpg",
       name: "Daniel Clifford",
       heading:
-        "I received a job offer mid-course, and the subjects I learned were current, if not more so, in the company I joined. I honestly feel I got every penny’s worth.",
+        "The quality of the furniture exceeded my expectations! I purchased a queen-size bed, and the craftsmanship is top-notch. The customer service was also fantastic throughout the buying process.",
     },
     {
       // 2
-      avatarImg: imageJonathan,
+      avatarImg: "images/reviews/image-jonathan.jpg",
       name: "Jonathan Walters",
-      heading: "The team was very supportive and kept me motivated",
+      heading: "Amazing selection and fast delivery! My new sofa arrived earlier than expected, and it looks perfect in my living room.",
     },
     {
-      // 5
       className: "md:col-span-2",
-      avatarImg: imagePatrick,
+      avatarImg: "images/reviews/image-patrick.jpg",
       name: "Patrick Abrams",
       heading:
-        "Awesome teaching support from TAs who did the bootcamp themselves. Getting guidance from them and learning from their experiences was easy.",
+        "The whole experience was great, from browsing online to delivery. I love my new rustic bed! The build quality is solid, and the design adds a warm touch to my bedroom.",
     },
+    
 
   ];
   return (
