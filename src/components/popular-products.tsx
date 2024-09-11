@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Container from "./container";
 import {motion} from 'framer-motion'
-import Product from "./product";
+import {Product ,ProductCardSkeleton } from "./product";
 let tabs = [
   { id: "sofa", label: "Sofa" },
   { id: "chair", label: "Chairs" },
@@ -87,7 +87,9 @@ function PopularProducts() {
         </div>
         {/* products container */}
         <div className="flex overflow-y-hidden gap-6 scrollbar-none ">
-          {data.map((product)=> (
+          {loading? [1,2,3,4,5].map((i) => (
+            <ProductCardSkeleton />
+          )) : data.map((product)=> (
             <Product key={product.id} product={product}/>
           ))}
         </div>

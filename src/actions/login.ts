@@ -3,7 +3,6 @@
 import { signIn } from "@/auth";
 import { getUserByEmail } from "@/lib/helpers/authHelper";
 import { LoginSchema, loginSchema } from "@/zod-schemas";
-import { error } from "console";
 import { AuthError } from "next-auth";
 
 export async function login(values: loginSchema){

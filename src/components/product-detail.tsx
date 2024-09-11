@@ -2,24 +2,18 @@
 import Image from "next/image";
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { ShoppingCart, Star } from "lucide-react"
 import { Product } from "@prisma/client";
 import useCart from "@/hooks/useCart";
+import { Skeleton } from "./ui/skeleton";
 
-
-
-export default function ProductDetailPage({id}: {id: string}){
+export function 
+ProductDetailPage({id}: {id: string}){
 
   const [product, setProduct] = useState<Product | null>();
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState(null);
-  const { addToCart, removeItem } = useCart();
-
-
+  const { addToCart } = useCart();
+  const [error, setError] = useState()
+  const [loading, setLoading] = useState(true)
 
   const fetchProducts = async () => {
     setLoading(true);
@@ -41,9 +35,14 @@ export default function ProductDetailPage({id}: {id: string}){
     fetchProducts()
   }, [])
 
+  if(loading){
+    return (
+      <ProductDetailSkeleton/>
+    )
+  }
+
   return (
     <>
-    {loading && <p>loading...</p>}
     {product && <div className="container mx-auto px-4 py-8">
       <div className="grid md:grid-cols-2 gap-8">
         <div className="space-y-4">
@@ -59,39 +58,6 @@ export default function ProductDetailPage({id}: {id: string}){
           <p className="text-gray-600">
             {product.description}
           </p>
-          {/* <Card>
-            <CardContent className="p-4 space-y-4">
-              <div>
-                <Label htmlFor="quantity" className="text-base font-semibold">
-                  Quantity
-                </Label>
-                <div className="flex items-center gap-2 mt-2">
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    aria-label="Decrease quantity"
-                  >
-                    -
-                  </Button>
-                   TODO: quantity logic 
-                  <Input
-                    type="number"
-                    id="quantity"
-                    value= "1"
-                    className="w-20 text-center"
-                    min="1"
-                  />
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    aria-label="Increase quantity"
-                  >
-                    +
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card> */}
 
           {/* TODO: handle addToCart */}
           <Button className="w-full" size="lg" onClick={() => addToCart({ id: id, image: product.imageUrl, name: product.title, price: product.price, quantity: 1 })} 
@@ -106,5 +72,35 @@ export default function ProductDetailPage({id}: {id: string}){
       </div>
     </div>}
     </>
+  )
+}
+
+export function ProductDetailSkeleton() {
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <div className="grid md:grid-cols-2 gap-8">
+        <div className="space-y-4">
+          <Skeleton className="aspect-square w-full h-auto rounded-lg" />
+        </div>
+        <div className="space-y-6">
+          <div>
+            <Skeleton className="h-9 w-3/4" />
+          </div>
+          <Skeleton className="h-12 w-1/4" />
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-3/4" />
+          </div>
+          <Button className="w-full" size="lg" disabled>
+            <ShoppingCart className="mr-2 h-5 w-5" /> Add to Cart
+          </Button>
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-3/4" />
+            <Skeleton className="h-4 w-1/2" />
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
