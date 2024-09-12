@@ -1,9 +1,8 @@
-import useCart from "@/hooks/useCart";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { ShoppingCart } from "lucide-react";
-import { addItem } from "@/actions/redis";
 import { Skeleton } from "./ui/skeleton";
+import { addItem } from "@/actions/redis";
 
 interface Props {
   product: {
@@ -19,8 +18,6 @@ interface Props {
 export function Product({
   product: { id, imageUrl, category, title, price, description },
 }: Props) {
-  // const { addToCart, removeItem } = useCart();
-
 
   return (
     <div

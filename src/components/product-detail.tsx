@@ -4,14 +4,13 @@ import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ShoppingCart, Star } from "lucide-react"
 import { Product } from "@prisma/client";
-import useCart from "@/hooks/useCart";
 import { Skeleton } from "./ui/skeleton";
+import { addItem } from "@/actions/redis";
 
 export function 
 ProductDetailPage({id}: {id: string}){
 
   const [product, setProduct] = useState<Product | null>();
-  const { addToCart } = useCart();
   const [error, setError] = useState()
   const [loading, setLoading] = useState(true)
 
@@ -60,7 +59,7 @@ ProductDetailPage({id}: {id: string}){
           </p>
 
           {/* TODO: handle addToCart */}
-          <Button className="w-full" size="lg" onClick={() => addToCart({ id: id, image: product.imageUrl, name: product.title, price: product.price, quantity: 1 })} 
+          <Button className="w-full" size="lg" onClick={() => addItem(product.id)} 
           >
             <ShoppingCart className="mr-2 h-5 w-5" /> Add to Cart
           </Button>

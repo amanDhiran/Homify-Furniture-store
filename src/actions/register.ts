@@ -27,7 +27,6 @@ export async function register(values: registerSchema){
             password: hashedPassword
         }
      })
-    console.log(name, email, password);
     return {success: 'User Created'}
     
 }

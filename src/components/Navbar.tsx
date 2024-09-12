@@ -5,7 +5,6 @@ import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { FaUser } from "react-icons/fa";
 import Link from "next/link";
 import { logout } from "@/actions/logout";
-import { useSession } from "next-auth/react";
 import { User } from "next-auth";
 import {
   DropdownMenu,
@@ -15,23 +14,15 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
-// import { signOut } from "@/auth";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "./ui/sheet";
-import { Menu, Minus, Plus, Trash2, X } from "lucide-react"
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { cartTotalState } from "@/store/atoms/cartState";
-import { CartSheet } from "./cart-sheet";
-import useCart from "@/hooks/useCart";
+import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+import { Menu} from "lucide-react";
+import { Cart } from "@/actions/redis";
+import { FaCartShopping } from "react-icons/fa6";
 
-function Navbar({ user }: { user: User }) {
+function Navbar({ user, cart }: { user: User; cart: Cart | null }) {
   const [hidden, setHidden] = useState(false);
   const [pending, startTransition] = useTransition();
   const { scrollY } = useScroll();
-  const {emptyCart} = useCart()
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
@@ -45,9 +36,11 @@ function Navbar({ user }: { user: User }) {
   async function handleLogout() {
     startTransition(() => {
       logout();
-      emptyCart()
     });
   }
+  
+  const totalItems = cart && cart.items ?
+    cart?.items.reduce((total, item) => total + item.quantity, 0) : 0;
 
   return (
     <motion.header
@@ -62,22 +55,38 @@ function Navbar({ user }: { user: User }) {
       <Container>
         <div className="flex items-center justify-between text-black">
           <Link href="/" className="flex-shrink-0 flex items-center">
-              <svg className="h-8 w-8 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-              </svg>
-              <span className="ml-2 text-xl font-bold text-primary">Homify</span>
-            </Link>
+            <svg
+              className="h-8 w-8 text-primary"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span className="ml-2 text-xl font-bold text-primary">Homify</span>
+          </Link>
           <div className="hidden md:block">
             <ul className="flex gap-5">
-              <li><Link href={"/"}>
-            Home
-          </Link></li>
-              <li><Link href={"/our-products"}>
-            Products
-          </Link></li>
-              <li><a href="#" rel="noopener noreferrer">About Us</a></li>
-              <li><a href="#" rel="noopener noreferrer">Contact Us</a></li>
+              <li>
+                <Link href={"/"}>Home</Link>
+              </li>
+              <li>
+                <Link href={"/our-products"}>Products</Link>
+              </li>
+              <li>
+                <a href="#" rel="noopener noreferrer">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="#" rel="noopener noreferrer">
+                  Contact Us
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -110,17 +119,34 @@ function Navbar({ user }: { user: User }) {
                   </DropdownMenuContent>
                 </DropdownMenu>
               ) : (
-                  <Link href={{
-                    pathname: "/auth/login"
-                  }}>
-                    {/* <FaUser className="h-5 w-5 mr-1" /> */}
-                    Sign In
-                  </Link>
+                <Link
+                  href={{
+                    pathname: "/auth/login",
+                  }}
+                >
+                  {/* <FaUser className="h-5 w-5 mr-1" /> */}
+                  Sign In
+                </Link>
               )}
             </div>
             <div className="flex gap-3 items-center md:block">
-              
-              <CartSheet/>
+              <Link
+                href={{
+                  pathname: "/cart",
+                }}
+              >
+                <Button
+                  variant="ghost"
+                  className=" text-gray-700 hover:bg-transparent hover:text-primary relative"
+                >
+                  <FaCartShopping className="h-5 w-5" />
+                  {totalItems > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                      {totalItems}
+                    </span>
+                  )}
+                </Button>
+              </Link>
 
               <div className="sm:hidden">
                 <Sheet>
@@ -162,12 +188,10 @@ function Navbar({ user }: { user: User }) {
                           </div>
                           <div className="ml-3">
                             <div className="text-base font-medium text-gray-800">
-                              {user ? "John Doe" : "Guest"}
+                              {user ? user.name : "Guest"}
                             </div>
                             <div className="text-sm font-medium text-gray-500">
-                              {user
-                                ? "johndoe@example.com"
-                                : "Sign in to your account"}
+                              {user ? user.email : "Sign in to your account"}
                             </div>
                           </div>
                         </div>
@@ -196,9 +220,12 @@ function Navbar({ user }: { user: User }) {
                             </>
                           ) : (
                             <>
-                              <Link href={{
-                                pathname: "/auth/login"
-                              }} className="w-full text-left px-4 py-2 text-base font-medium text-gray-500 hover:text-primary hover:bg-gray-100">
+                              <Link
+                                href={{
+                                  pathname: "/auth/login",
+                                }}
+                                className="w-full text-left px-4 py-2 text-base font-medium text-gray-500 hover:text-primary hover:bg-gray-100"
+                              >
                                 <div>Sign in</div>
                               </Link>
                               <Link

@@ -5,6 +5,8 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { auth } from "@/auth";
 import { Providers } from "./provider";
+import { Cart } from "@/actions/redis";
+import { redis } from "@/lib/redis";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -18,11 +20,13 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await auth()
+  const cart: Cart | null = await redis.get(`cart-${session?.user?.id}`) 
+  
   return (
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <Navbar user={session?.user!}/>
+          <Navbar user={session?.user!} cart={cart}/>
           <div className="pt-[80px]">
           {children}
           </div>

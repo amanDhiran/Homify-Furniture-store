@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { ArrowLeft, ShoppingCart, Star } from 'lucide-react'
 import Link from 'next/link'
-import Product from './product'
+import {Product} from './product'
 
 interface Product{
     id:          string      
