@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import {motion} from 'framer-motion'
 import {Product ,ProductCardSkeleton } from "./product";
-import {Container} from "@/components/container";
+import Container from "@/components/container";
 let tabs = [
   { id: "sofa", label: "Sofa" },
   { id: "chair", label: "Chairs" },

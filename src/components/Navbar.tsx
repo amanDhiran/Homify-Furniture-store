@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState, useTransition } from "react";
-import {Container} from "@/components/container";
+import Container from "@/components/container";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { FaUser } from "react-icons/fa";
 import Link from "next/link";
