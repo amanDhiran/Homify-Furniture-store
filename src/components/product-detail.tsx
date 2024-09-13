@@ -13,6 +13,7 @@ ProductDetailPage({id}: {id: string}){
   const [product, setProduct] = useState<Product | null>();
   const [error, setError] = useState()
   const [loading, setLoading] = useState(true)
+  const CLIENT_URL = process.env.CLIENT_URL || ""
 
   const fetchProducts = async () => {
     setLoading(true);
@@ -46,7 +47,7 @@ ProductDetailPage({id}: {id: string}){
       <div className="grid md:grid-cols-2 gap-8">
         <div className="space-y-4">
           <div className="aspect-square relative overflow-hidden rounded-lg bg-gray-100">
-            <Image src={product.imageUrl} className="object-cover w-full h-full" alt={product.title} width={400} height={400} />
+            <Image src={`${CLIENT_URL}${product.imageUrl}`} className="object-cover w-full h-full" alt={product.title} width={400} height={400} />
           </div>
         </div>
         <div className="space-y-6">

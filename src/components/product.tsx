@@ -14,7 +14,7 @@ interface Props {
     category: string;
   };
 }
-
+const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:3000"
 export function Product({
   product: { id, imageUrl, category, title, price, description },
 }: Props) {
@@ -31,7 +31,7 @@ export function Product({
       >
         <div className=" overflow-hidden rounded-md  lg:aspect-none group-hover:opacity-75 h-48 w-52">
           <img
-            src={imageUrl}
+            src={`${CLIENT_URL}${imageUrl}`}
             alt={title}
             className="w-full h-full object-contain mb-4 rounded"
           />

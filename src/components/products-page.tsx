@@ -1,39 +1,38 @@
-"use client"
-import { useEffect, useState } from 'react'
-import { Slider } from "@/components/ui/slider"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { ArrowLeft, ShoppingCart, Star } from 'lucide-react'
-import Link from 'next/link'
-import {Product} from './product'
-import { Skeleton } from './ui/skeleton'
+"use client";
+import { useEffect, useState } from "react";
+import { Slider } from "@/components/ui/slider";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { ArrowLeft, ShoppingCart, Star } from "lucide-react";
+import Link from "next/link";
+import { Product } from "./product";
+import { Skeleton } from "./ui/skeleton";
 
-interface Product{
-    id:          string      
-    title:       string
-    description: string
-    price:       number
-    imageUrl:    string
-    category:    string
+interface Product {
+  id: string;
+  title: string;
+  description: string;
+  price: number;
+  imageUrl: string;
+  category: string;
 }
 
-const categories = ["SOFA", "CHAIR", "BED", "LAMP"]
+const categories = ["SOFA", "CHAIR", "BED", "LAMP"];
 
 export function ProductsPage() {
-    const[products, setProducts] = useState<Product[]>([])
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([])
-  const [priceRange, setPriceRange] = useState([0, 5000])
-  const [searchTerm, setSearchTerm] = useState("")
+  const [products, setProducts] = useState<Product[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [priceRange, setPriceRange] = useState([0, 5000]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState(null);
-
 
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/products')
+      const response = await fetch("/api/products");
       if (!response.ok) {
         throw new Error("Failed to fetch products");
       }
@@ -47,32 +46,37 @@ export function ProductsPage() {
   };
 
   useEffect(() => {
-    fetchProducts()
-  }, [])
+    fetchProducts();
+  }, []);
 
-  const filteredProducts = products
-    .filter(product => 
-      (selectedCategories.length === 0 || selectedCategories.includes(product.category)) &&
-      product.price >= priceRange[0] && product.price <= priceRange[1] &&
+  const filteredProducts = products.filter(
+    (product) =>
+      (selectedCategories.length === 0 ||
+        selectedCategories.includes(product.category)) &&
+      product.price >= priceRange[0] &&
+      product.price <= priceRange[1] &&
       product.title.toLowerCase().includes(searchTerm.toLowerCase())
-    )
+  );
 
   const handleCategoryChange = (category: string) => {
-    setSelectedCategories(prev => 
+    setSelectedCategories((prev) =>
       prev.includes(category)
-        ? prev.filter(c => c !== category)
+        ? prev.filter((c) => c !== category)
         : [...prev, category]
-    )
-  }
+    );
+  };
 
-  if(loading){
-    return <ProductsPageSkeleton/>
+  if (loading) {
+    return <ProductsPageSkeleton />;
   }
 
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex items-center mb-8">
-        <Link href="/" className="flex items-center text-sm md:text-base text-primary hover:text-primary-dark transition-colors">
+        <Link
+          href="/"
+          className="flex items-center text-sm md:text-base text-primary hover:text-primary-dark transition-colors"
+        >
           <ArrowLeft className="mr-2" />
           Back to Home
         </Link>
@@ -83,7 +87,12 @@ export function ProductsPage() {
           <div className="bg-gray-100 p-6 rounded-lg shadow-md sticky top-4">
             <h2 className="text-xl font-semibold mb-4">Filters</h2>
             <div className="mb-6">
-              <Label htmlFor="search" className="text-sm font-medium mb-2 block">Search</Label>
+              <Label
+                htmlFor="search"
+                className="text-sm font-medium mb-2 block"
+              >
+                Search
+              </Label>
               <Input
                 type="text"
                 id="search"
@@ -95,14 +104,17 @@ export function ProductsPage() {
             </div>
             <div className="mb-6">
               <h3 className="text-lg font-medium mb-2">Categories</h3>
-              {categories.map(category => (
+              {categories.map((category) => (
                 <div key={category} className="flex items-center mb-2">
                   <Checkbox
                     id={category}
                     checked={selectedCategories.includes(category)}
                     onCheckedChange={() => handleCategoryChange(category)}
                   />
-                  <label htmlFor={category} className="ml-2 text-sm font-medium cursor-pointer">
+                  <label
+                    htmlFor={category}
+                    className="ml-2 text-sm font-medium cursor-pointer"
+                  >
                     {category}
                   </label>
                 </div>
@@ -125,9 +137,9 @@ export function ProductsPage() {
             </div>
             <Button
               onClick={() => {
-                setSelectedCategories([])
-                setPriceRange([0, 1000])
-                setSearchTerm("")
+                setSelectedCategories([]);
+                setPriceRange([0, 1000]);
+                setSearchTerm("");
               }}
               variant="outline"
               className="w-full"
@@ -138,24 +150,29 @@ export function ProductsPage() {
         </aside>
         <main className="w-full md:w-3/4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProducts.map(product => (
-            <Product product={product} key={product.id}/>
+            {filteredProducts.map((product) => (
+              <Product product={product} key={product.id} />
             ))}
           </div>
           {filteredProducts.length === 0 && (
-            <p className="text-center text-gray-500 mt-8">No products found matching your criteria.</p>
+            <p className="text-center text-gray-500 mt-8">
+              No products found matching your criteria.
+            </p>
           )}
         </main>
       </div>
     </div>
-  )
+  );
 }
 
 function ProductsPageSkeleton() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex items-center mb-8">
-        <Link href="/" className="flex items-center text-sm md:text-base text-primary hover:text-primary-dark transition-colors">
+        <Link
+          href="/"
+          className="flex items-center text-sm md:text-base text-primary hover:text-primary-dark transition-colors"
+        >
           <ArrowLeft className="mr-2" />
           Back to Home
         </Link>
@@ -203,4 +220,5 @@ function ProductsPageSkeleton() {
         </main>
       </div>
     </div>
-  )}
+  );
+}

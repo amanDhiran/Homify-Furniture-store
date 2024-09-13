@@ -132,7 +132,7 @@ function Navbar({ user, cart }: { user: User; cart: Cart | null }) {
             <div className="flex gap-3 items-center md:block">
               <Link
                 href={{
-                  pathname: "/cart",
+                  pathname: !user ? "/auth/login" : "/cart",
                 }}
               >
                 <Button

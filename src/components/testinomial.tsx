@@ -44,8 +44,8 @@ function Testimonial() {
         </div>
         <div className="whitespace-nowrap scrollbar-none overflow-x-hidden overflow-y-hidden">
           <div className="animate-marquee">
-            {data.map((data) => (
-              <div className="inline-block mr-[20px]">
+            {data.map((data, i) => (
+              <div key={i} className="inline-block mr-[20px]">
                 <div
                   className={`p-6 min-w-56 rounded-lg h-auto flex flex-col gap-4  max-w-md bg-[#f7f7f7]`}
                 >
@@ -67,8 +67,8 @@ function Testimonial() {
                 </div>
               </div>
             ))}
-            {data.map((data) => (
-              <div className="inline-block mr-[20px]">
+            {data.map((data, i) => (
+              <div key={i} className="inline-block mr-[20px]">
                 <div
                   className={`p-6 min-w-56 rounded-lg h-auto flex flex-col gap-4  max-w-md bg-[#f7f7f7]`}
                 >

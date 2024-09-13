@@ -9,6 +9,7 @@ import { CartItem } from './cart-item'
 import { redis } from '@/lib/redis'
 import { redirect } from 'next/navigation'
 import { auth } from '@/auth'
+import { checkOut } from '@/actions/checkout'
 
 
 export async function CartComponent() {
@@ -71,9 +72,11 @@ const cart: Cart | null = await redis.get(`cart-${session.user.id}`)
                     <span>${totalPrice.toFixed(2)}</span>
                   </div>
                 </div>
+                <form action={checkOut}>
                 <Button className="w-full mt-6" size="lg">
                   Proceed to Checkout
                 </Button>
+                </form>
               </CardContent>
             </Card>
           </div>
