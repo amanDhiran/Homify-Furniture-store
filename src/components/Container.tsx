@@ -1,7 +1,7 @@
 "use client"
 import React, { ReactNode } from 'react'
 
-function Container({ className, children }: {
+export function Container({ className, children }: {
     className?: string;
     children: ReactNode
 }) {
@@ -10,4 +10,3 @@ function Container({ className, children }: {
   )
 }
 
-export default Container

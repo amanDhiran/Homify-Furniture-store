@@ -1,8 +1,8 @@
 "use client"
 import React, { useEffect, useState } from "react";
-import Container from "./container";
 import {motion} from 'framer-motion'
 import {Product ,ProductCardSkeleton } from "./product";
+import {Container} from "./container";
 let tabs = [
   { id: "sofa", label: "Sofa" },
   { id: "chair", label: "Chairs" },
@@ -48,7 +48,7 @@ function PopularProducts() {
 
   return (
     <div className="bg-[#F7F7F7] py-10">
-      <Container >
+      <Container>
         <div>
           <div className="text-4xl text-center font-bold ">
             Popular Products
