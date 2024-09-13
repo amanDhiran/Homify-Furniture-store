@@ -4,7 +4,6 @@ import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { removeItem, updateItemQuantity } from "@/actions/redis";
-import Image from "next/image";
 
 type Props = {
   id: string;
@@ -18,7 +17,7 @@ export function CartItem({ item }: { item: Props }) {
   return (
     <Card>
       <CardContent className="flex items-center space-x-4 p-4">
-        <Image
+        <img
           src={item.image}
           alt={item.name}
           className="w-24 h-24 object-cover rounded"
