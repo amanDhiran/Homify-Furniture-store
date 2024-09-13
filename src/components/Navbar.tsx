@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState, useTransition } from "react";
-import {Container} from "./container";
+import {Container} from "@/components/container";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { FaUser } from "react-icons/fa";
 import Link from "next/link";
@@ -12,9 +12,9 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import { Button } from "./ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu} from "lucide-react";
 import { Cart } from "@/actions/redis";
 import { FaCartShopping } from "react-icons/fa6";

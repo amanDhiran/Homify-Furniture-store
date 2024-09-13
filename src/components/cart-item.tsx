@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Card, CardContent } from "./ui/card";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { removeItem, updateItemQuantity } from "@/actions/redis";
 

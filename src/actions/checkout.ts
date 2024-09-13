@@ -23,7 +23,7 @@ export async function checkOut(){
                 unit_amount: item.price * 100,
                 product_data: {
                     name: item.name,
-                    images: [`http://localhost:3000/${item.image}`]
+                    images: [item.image]
                 }
             },
             quantity: item.quantity
