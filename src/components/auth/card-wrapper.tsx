@@ -4,6 +4,7 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Header } from "@/components/auth/header";
 import { Social } from "./social";
 import { Backbutton } from "./backbutton";
+import { Separator } from "../ui/separator";
 
 interface CardWrapperProps {
     children: React.ReactNode;
@@ -27,6 +28,7 @@ function CardWrapper({
         </CardHeader>
         <CardContent>
             {children}
+        <Separator className="mt-6"/>
         </CardContent>
         {showSocial && (
             <CardFooter>

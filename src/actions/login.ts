@@ -25,7 +25,6 @@ export async function login(values: loginSchema){
             password,
             redirectTo: '/'
         })
-        console.log("logged In");
         return {success: "User Logged In"}
     } catch (error) {
         if (error instanceof AuthError) {

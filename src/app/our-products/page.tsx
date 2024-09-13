@@ -1,5 +1,5 @@
 import React from 'react'
-import ProductsPage from '@/components/products-page'
+import {ProductsPage} from '@/components/products-page'
 
 function OurProducts() {
   return (

@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label"
 import { ArrowLeft, ShoppingCart, Star } from 'lucide-react'
 import Link from 'next/link'
 import {Product} from './product'
+import { Skeleton } from './ui/skeleton'
 
 interface Product{
     id:          string      
@@ -20,7 +21,7 @@ interface Product{
 
 const categories = ["SOFA", "CHAIR", "BED", "LAMP"]
 
-export default function ProductsPage() {
+export function ProductsPage() {
     const[products, setProducts] = useState<Product[]>([])
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])
   const [priceRange, setPriceRange] = useState([0, 5000])
@@ -62,6 +63,10 @@ export default function ProductsPage() {
         ? prev.filter(c => c !== category)
         : [...prev, category]
     )
+  }
+
+  if(loading){
+    return <ProductsPageSkeleton/>
   }
 
   return (
@@ -145,3 +150,57 @@ export default function ProductsPage() {
     </div>
   )
 }
+
+function ProductsPageSkeleton() {
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <div className="flex items-center mb-8">
+        <Link href="/" className="flex items-center text-sm md:text-base text-primary hover:text-primary-dark transition-colors">
+          <ArrowLeft className="mr-2" />
+          Back to Home
+        </Link>
+        <Skeleton className="h-8 w-48 ml-auto" />
+      </div>
+      <div className="flex flex-col md:flex-row gap-8">
+        <aside className="w-full md:w-1/4">
+          <div className="bg-gray-100 p-6 rounded-lg shadow-md sticky top-4">
+            <Skeleton className="h-6 w-24 mb-4" />
+            <div className="mb-6">
+              <Skeleton className="h-4 w-16 mb-2" />
+              <Skeleton className="h-10 w-full" />
+            </div>
+            <div className="mb-6">
+              <Skeleton className="h-5 w-24 mb-2" />
+              {[1, 2, 3, 4].map((_, index) => (
+                <div key={index} className="flex items-center mb-2">
+                  <Skeleton className="h-4 w-4 mr-2" />
+                  <Skeleton className="h-4 w-24" />
+                </div>
+              ))}
+            </div>
+            <div className="mb-6">
+              <Skeleton className="h-5 w-24 mb-2" />
+              <Skeleton className="h-4 w-full mb-2" />
+              <div className="flex justify-between">
+                <Skeleton className="h-4 w-8" />
+                <Skeleton className="h-4 w-8" />
+              </div>
+            </div>
+            <Skeleton className="h-10 w-full" />
+          </div>
+        </aside>
+        <main className="w-full md:w-3/4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[...Array(6)].map((_, index) => (
+              <div key={index} className="bg-white p-4 rounded-lg shadow-md">
+                <Skeleton className="h-48 w-full mb-4" />
+                <Skeleton className="h-6 w-3/4 mb-2" />
+                <Skeleton className="h-4 w-1/2 mb-4" />
+                <Skeleton className="h-10 w-full" />
+              </div>
+            ))}
+          </div>
+        </main>
+      </div>
+    </div>
+  )}

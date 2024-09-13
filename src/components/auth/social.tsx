@@ -7,7 +7,7 @@ import { signIn } from "next-auth/react";
 
 
 export function Social(){
-    function onClick(provider: 'google' | 'github') {
+    function onClick(provider: 'google') {
         signIn(provider)
       }
     return (
@@ -18,13 +18,6 @@ export function Social(){
                 onClick={() => onClick('google')}
             >
                 <FcGoogle className="size-5" />
-            </Button>
-            <Button 
-                variant="outline"
-                className="w-full"
-                onClick={() => onClick('github')}
-            >
-                <FaGithub className="size-5 text-black" />
             </Button>
         </div>
     )
