@@ -18,7 +18,7 @@ function PaymentCancel() {
               <ShoppingCart className="mr-2 h-5 w-5" />
               Your Cart is Still Saved
             </h2>
-            <p className="text-sm">Don't worry! The items in your cart are still saved. You can come back anytime to complete your purchase.</p>
+            <p className="text-sm">Don&#39;t worry! The items in your cart are still saved. You can come back anytime to complete your purchase.</p>
           </div>
 
           <Button asChild className="w-full">
