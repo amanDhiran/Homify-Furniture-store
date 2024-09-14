@@ -10,6 +10,8 @@ import { Cart } from "./redis"
 export async function checkOut(){
     const session = await auth() 
 
+    const CLIENT_URL = process.env.CLIENT_URL || ""
+
     if(!session?.user){
         return redirect("/auth/login")
     }
@@ -23,7 +25,7 @@ export async function checkOut(){
                 unit_amount: item.price * 100,
                 product_data: {
                     name: item.name,
-                    images: [item.image]
+                    images: [CLIENT_URL + item.image]
                 }
             },
             quantity: item.quantity
