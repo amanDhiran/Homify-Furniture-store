@@ -22,7 +22,7 @@ function PaymentCancel() {
           </div>
 
           <Button asChild className="w-full">
-            <Link href="/shop" className="inline-flex items-center justify-center">
+            <Link href="/" className="inline-flex items-center justify-center">
               Continue Shopping
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
@@ -30,11 +30,11 @@ function PaymentCancel() {
 
         <p className="text-sm text-gray-600">
           If you have any questions, please check our{' '}
-          <Link href="/faq" className="text-primary hover:underline">
+          <Link href="#" className="text-primary hover:underline">
             FAQ
           </Link>{' '}
           or{' '}
-          <Link href="/contact" className="text-primary hover:underline">
+          <Link href="#" className="text-primary hover:underline">
             contact us
           </Link>
           .

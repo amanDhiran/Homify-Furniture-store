@@ -59,18 +59,18 @@ function PaymentSuccess() {
 
       <div className="text-center space-y-4">
         <Button asChild>
-          <Link href="/shop" className="inline-flex items-center">
+          <Link href="/" className="inline-flex items-center">
             Continue Shopping
             <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </Button>
         <p className="text-sm text-gray-600">
           If you have any questions, please check our{' '}
-          <Link href="/faq" className="text-primary hover:underline">
+          <Link href="#" className="text-primary hover:underline">
             FAQ
           </Link>{' '}
           or{' '}
-          <Link href="/contact" className="text-primary hover:underline">
+          <Link href="#" className="text-primary hover:underline">
             contact us
           </Link>
         </p>

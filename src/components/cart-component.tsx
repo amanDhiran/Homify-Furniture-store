@@ -10,6 +10,7 @@ import { redis } from '@/lib/redis'
 import { redirect } from 'next/navigation'
 import { auth } from '@/auth'
 import { checkOut } from '@/actions/checkout'
+import CheckoutButton from './checkout-button'
 
 
 export async function CartComponent() {
@@ -73,9 +74,7 @@ const cart: Cart | null = await redis.get(`cart-${session.user.id}`)
                   </div>
                 </div>
                 <form action={checkOut}>
-                <Button className="w-full mt-6" size="lg">
-                  Proceed to Checkout
-                </Button>
+                <CheckoutButton/>
                 </form>
               </CardContent>
             </Card>
@@ -85,4 +84,6 @@ const cart: Cart | null = await redis.get(`cart-${session.user.id}`)
     </div>
   )
 }
+
+
 

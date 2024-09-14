@@ -8,15 +8,15 @@ import Stripe from "stripe"
 import { Cart } from "./redis"
 
 export async function checkOut(){
-    const session = await auth() 
+    const authSession = await auth() 
 
-    const CLIENT_URL = process.env.CLIENT_URL || ""
+    const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:3000"
 
-    if(!session?.user){
+    if(!authSession?.user){
         return redirect("/auth/login")
     }
 
-    let cart: Cart | null = await redis.get(`cart-${session.user.id}`)
+    let cart: Cart | null = await redis.get(`cart-${authSession.user.id}`)
 
     if(cart && cart.items.length > 0){
         const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = cart.items.map((item) => ({
@@ -28,13 +28,16 @@ export async function checkOut(){
                     images: [CLIENT_URL + item.image]
                 }
             },
-            quantity: item.quantity
+            quantity: item.quantity,
         }))
         const session = await stripe.checkout.sessions.create({
             mode: 'payment',
             line_items: lineItems,
             success_url: "http://localhost:3000/payment/success",
-            cancel_url: "http://localhost:3000/payment/cancel"
+            cancel_url: "http://localhost:3000/payment/cancel",
+            metadata: {
+                userId: authSession.user.id as string,
+            },
         })
         return redirect(session.url as string)
     }
