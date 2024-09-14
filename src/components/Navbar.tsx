@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu} from "lucide-react";
+import { Menu } from "lucide-react";
 import { Cart } from "@/actions/redis";
 import { FaCartShopping } from "react-icons/fa6";
 
@@ -38,9 +38,11 @@ function Navbar({ user, cart }: { user: User; cart: Cart | null }) {
       logout();
     });
   }
-  
-  const totalItems = cart && cart.items ?
-    cart?.items.reduce((total, item) => total + item.quantity, 0) : 0;
+
+  const totalItems =
+    cart && cart.items
+      ? cart?.items.reduce((total, item) => total + item.quantity, 0)
+      : 0;
 
   return (
     <motion.header
@@ -103,14 +105,14 @@ function Navbar({ user, cart }: { user: User; cart: Cart | null }) {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-56">
-                    <DropdownMenuItem>
-                      {/* <User className="mr-2 h-4 w-4" /> */}
-                      <span>Profile</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      {/* <FaCartShopping className="mr-2 h-4 w-4" /> */}
-                      <span>Orders</span>
-                    </DropdownMenuItem>
+                    <div className="px-2 py-1.5">
+                      <div className="text-sm text-gray-800">
+                        {user.name}
+                      </div>
+                      <div className="text-xs text-gray-500">
+                        {user.email}
+                      </div>
+                    </div>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem onClick={handleLogout}>
                       {/* <LogOut className="mr-2 h-4 w-4" /> */}
